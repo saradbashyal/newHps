@@ -3,6 +3,9 @@ import { useState } from 'react'
 import axios from 'axios'
 import { toast,ToastContainer } from 'react-toastify'
 import {EyeOff,Eye} from 'lucide-react'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
+
 const Login = () => {
 
     const api = import.meta.env.VITE_API_BASE_URL
@@ -13,7 +16,7 @@ const Login = () => {
         }
     })
 
-
+    const navigate = useNavigate()
 
     const [state,setstate] = useState({
         Email:"",
@@ -76,11 +79,16 @@ const Login = () => {
 
     setstate(prev => ({ ...prev, Loading: true }));
     try{
-        const response = await LoginInstance.post("/user/register",{
-            Email: state.Email,
-            Password: state.Password
+        const response = await LoginInstance.post("/user/login",{
+            email: state.Email,
+            password: state.Password
         })
+        console.log(response)
         toast.success("signup successful")
+        Cookies.set("token", response.data.accessToken, { expires: 7 }) 
+        console.log("token value:",response.data)
+        navigate("/dashboard")
+
         setstate({
             Email:"",
             Password:"",

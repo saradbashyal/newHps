@@ -8,6 +8,11 @@ import Otp from './auth/forgotPassword/OTP'
 import ConfirmPassword from './auth/forgotPassword/confirmPassword'
 import Navbar from './shared/navbar'
 import Sidebar from './shared/sidebar'
+import Dashboard from './pages/dashboard'
+import Patients from './pages/patients'
+import EditPatient from './pages/editPatient'
+import ViewPatient from './pages/viewPatient'
+
 
 function App() {
   const [islight,setIslight] = useState(true) 
@@ -29,6 +34,10 @@ function App() {
       <Route path='/verifyOtp' element={<Otp/>}></Route>
       <Route path='/confirmpassword' element={<ConfirmPassword/>}></Route>
       <Route path='/resetpassword' element={<ResetPassword/>}></Route>
+      <Route path='/dashboard' element={<Dashboard/>}></Route>
+      <Route path='/patients' element={<Patients/>}></Route>
+      <Route path='/EditPatient/:id' element={<EditPatient/>}></Route>
+      <Route path='/ViewPatient/:id' element={<ViewPatient/>}></Route>
     </Routes>
     </main>
     </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 const Navbar = ({islight,togglemode}) => {
@@ -16,7 +17,7 @@ const Navbar = ({islight,togglemode}) => {
         e.preventDefault()
     }
     function handleLogout(){
-      Cookies.remove("Token",{path:"/"})
+      Cookies.remove("token",{path:"/"})
       navigate("/login")
     }
 
