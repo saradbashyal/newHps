@@ -59,16 +59,16 @@ const Patients = () => {
     }
   }
 
-  const filterPatirent = state.patient.filter((p) => {
+  const filterPatient = state.patient.filter((p) => {
     const term = state.search.trim();
     return (
       p.id.toString().includes(term) ||
-      p.userName.toLowerCase().includes(term) ||
-      p.email.toLowerCase().includes(term) ||
-      p.contactNumber.toLowerCase().includes(term) ||
-      p.address.toLowerCase().includes(term) ||
-      p.dateOfBirth.toLowerCase().includes(term) ||
-      p.gender.toLowerCase().includes(term)
+      (p.userName?.toLowerCase() || "").includes(term) ||
+      (p.email?.toLowerCase() || "").includes(term) ||
+      (p.contactNumber?.toLowerCase() || "").includes(term) ||
+      (p.address?.toLowerCase() || "").includes(term) ||
+      (p.dateOfBirth?.toLowerCase() || "").includes(term) ||
+      (p.gender?.toLowerCase() || "").includes(term)
     );
   });
 
@@ -105,8 +105,8 @@ const Patients = () => {
               <tr>
                 <td>loading...</td>
               </tr>
-            ) : state.patient.length > 0 ? (
-              state.patient.map((p) => {
+            ) : filterPatient.length > 0 ? (
+              filterPatient.map((p) => {
                 return (
                   <tr key={p.id}>
                     <td>{p.id}</td>
